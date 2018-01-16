@@ -25,13 +25,13 @@
 
 				<div>
 					<select class="form-control" name="cat_id" [(ngModel)]="work.cat_id" >
-						<option *ngFor="let item of generateArray(cat)" [ngValue]="item.id">
+						<option *ngFor="let item of generateArray(cat)" [value]="item.id">
 							{{item.name}}
 						</option>
 					</select>
 
 					<select class="form-control" name="lpz_id" [(ngModel)]="work.lpz_id" >
-						<option *ngFor="let item of generateArray(lpz)" [ngValue]="item.id">
+						<option *ngFor="let item of generateArray(lpz)" [value]="item.id">
 							{{item.name}}
 						</option>
 					</select>

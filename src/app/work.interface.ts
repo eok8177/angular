@@ -2,9 +2,10 @@ export interface Work {
     id: number;
     lpz_id: number;
     cat_id: number;
-    sum: number;
+    summ: number;
     invoice: string;
     description: string;
+    created_at: string;
 }
 
 export interface Lpz {

@@ -1,3 +1,4 @@
+<a href="#" [routerLink]="['/new-lpz']">Add new Lpz</a>
 <button class="btn btn-primary" (click)="onGetLpzs()">Get Lpzs</button>
 <hr>
 <app-lpz *ngFor="let lpz of lpzs" [lpz]="lpz" (lpzDeleted)="onDeleted($event)"></app-lpz>
