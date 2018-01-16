@@ -3,11 +3,15 @@ import { Http, Response, Headers } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 
+import { environment } from '../environments/environment';
+
 
 @Injectable()
 export class WorkService {
     constructor(private http: Http) {
     }
+
+    apiUrl = environment.apiUrl;
 
     addWork(values) {
         const body = JSON.stringify({
@@ -18,7 +22,7 @@ export class WorkService {
             lpz_id: values.lpz_id,
         });
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('http://lara.local/api/work', body, { headers: headers })
+        return this.http.post(this.apiUrl + 'work', body, { headers: headers })
             .map(
                 (response: Response) => {
                     return response.json().work;
@@ -27,7 +31,7 @@ export class WorkService {
     }
 
     getWorks(): Observable<any> {
-        return this.http.get('http://lara.local/api/works')
+        return this.http.get(this.apiUrl + 'works')
             .map(
                 (response: Response) => {
                     return response.json();
@@ -44,7 +48,7 @@ export class WorkService {
             lpz_id: values.lpz_id,
         });
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://lara.local/api/work/' + id, body, {headers: headers})
+        return this.http.put(this.apiUrl + 'work/' + id, body, {headers: headers})
             .map(
                 (response: Response) => {
                     return response.json().work;
@@ -53,6 +57,6 @@ export class WorkService {
     }
 
     deleteWork(id: number) {
-        return this.http.delete('http://lara.local/api/work/' + id);
+        return this.http.delete(this.apiUrl + 'work/' + id);
     }
 }

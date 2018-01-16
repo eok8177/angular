@@ -4,15 +4,19 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { Headers } from "@angular/http";
 
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class LpzService {
     constructor(private http: Http) {
     }
 
+    apiUrl = environment.apiUrl;
+
     addLpz(name: string) {
         const body = JSON.stringify({ name: name });
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('http://lara.local/api/lpz', body, { headers: headers })
+        return this.http.post(this.apiUrl + 'lpz', body, { headers: headers })
             .map(
                 (response: Response) => {
                     return response.json().lpz;
@@ -22,7 +26,7 @@ export class LpzService {
     }
 
     getLpzs(): Observable<any> {
-        return this.http.get('http://lara.local/api/lpz')
+        return this.http.get(this.apiUrl + 'lpz')
         .map(
             (response: Response) => {
                 return response.json().lpz;
@@ -33,7 +37,7 @@ export class LpzService {
     updateLpz(id: number, newName: string) {
         const body = JSON.stringify({name: newName});
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://lara.local/api/lpz/' + id, body, {headers: headers})
+        return this.http.put(this.apiUrl + 'lpz/' + id, body, {headers: headers})
             .map(
                 (response: Response) => {
                     return response.json().lpz;
@@ -42,6 +46,6 @@ export class LpzService {
     }
 
     deleteLpz(id: number) {
-        return this.http.delete('http://lara.local/api/lpz/' + id);
+        return this.http.delete(this.apiUrl + 'lpz/' + id);
     }
 }
