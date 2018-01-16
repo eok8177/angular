@@ -1,0 +1,30 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div>
+    <label for="invoice">Invoice</label>
+    <input type="text" id="invoice" name="invoice" ngModel />
+  </div>
+  <div>
+    <label for="summ">Summ </label>
+    <input type="text" id="summ" name="summ" ngModel />
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" name="description" cols="20" rows="2" ngModel ></textarea>
+  </div>
+
+  <div>
+    <select class="form-control" name="cat_id" ngModel >
+      <option *ngFor="let item of generateArray(cat)" [ngValue]="item.id">
+        {{item.name}}
+      </option>
+    </select>
+
+    <select class="form-control" name="lpz_id" ngModel>
+      <option *ngFor="let item of generateArray(lpz)" [ngValue]="item.id">
+        {{item.name}}
+      </option>
+    </select>
+  </div>
+
+  <button class="btn" type="submit">Save</button>
+</form>

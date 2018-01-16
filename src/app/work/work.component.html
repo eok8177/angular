@@ -1,0 +1,50 @@
+<div class="table">
+	<div class="body">
+		<span class="date">{{ work.created_at | date:'dd.MM.yy' }}</span>
+		<span class="summ">{{ work.summ }} грн.</span>
+		<span class="invoice">{{ work.invoice }}</span>
+		<span class="description">{{ work.description }}</span>
+		<span class="cat">{{ cat[work.cat_id].name }}</span>
+		<span class="lpz">{{ lpz[work.lpz_id].name }}</span>
+	</div>
+	<div class="footer">
+		<div *ngIf="editing" class="edit">
+			<form #f="ngForm" (ngSubmit)="onUpdate(f)">
+				<div>
+					<label for="invoice">Invoice</label>
+					<input type="text" id="invoice" name="invoice" [(ngModel)]="work.invoice" />
+				</div>
+				<div>
+					<label for="summ">Summ </label>
+					<input type="text" id="summ" name="summ" [(ngModel)]="work.summ" />
+				</div>
+				<div>
+					<label for="description">Description</label>
+					<textarea id="description" name="description" cols="20" rows="2" [(ngModel)]="work.description"></textarea>
+				</div>
+
+				<div>
+					<select class="form-control" name="cat_id" [(ngModel)]="work.cat_id" >
+						<option *ngFor="let item of generateArray(cat)" [ngValue]="item.id">
+							{{item.name}}
+						</option>
+					</select>
+
+					<select class="form-control" name="lpz_id" [(ngModel)]="work.lpz_id" >
+						<option *ngFor="let item of generateArray(lpz)" [ngValue]="item.id">
+							{{item.name}}
+						</option>
+					</select>
+				</div>
+			
+				<button class="btn" type="submit">Save</button>
+				<button (click)="onCancel()">Cancel</button>
+			</form>
+
+		</div>
+		<div *ngIf="!editing">
+			<button  (click)="onEdit()">Edit</button>
+			<button  (click)="onDelete()">Delete</button>
+		</div>
+	</div>
+</div>

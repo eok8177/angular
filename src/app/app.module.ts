@@ -11,13 +11,23 @@ import { NewLpzComponent } from './new-lpz/new-lpz.component';
 import { routing } from './app.routing';
 import { LpzService } from './lpz.service';
 
+import { WorkComponent } from './work/work.component';
+import { WorksComponent } from './works/works.component';
+import { NewWorkComponent } from './new-work/new-work.component';
+import { WorkService } from './work.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+
     LpzComponent,
     LpzsComponent,
-    NewLpzComponent
+    NewLpzComponent,
+
+    WorkComponent,
+    WorksComponent,
+    NewWorkComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +35,10 @@ import { LpzService } from './lpz.service';
     FormsModule,
     routing
   ],
-  providers: [LpzService],
+  providers: [
+    LpzService,
+    WorkService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
