@@ -15,6 +15,9 @@ import { WorkComponent } from './work/work.component';
 import { WorksComponent } from './works/works.component';
 import { NewWorkComponent } from './new-work/new-work.component';
 import { WorkService } from './work.service';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { WorkService } from './work.service';
 
     WorkComponent,
     WorksComponent,
-    NewWorkComponent
+    NewWorkComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { WorkService } from './work.service';
   ],
   providers: [
     LpzService,
-    WorkService
+    WorkService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
